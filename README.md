@@ -5,6 +5,7 @@ This action writes environment variables (or anything you want) to a JSON file t
 ## Inputs
 
 * **[required] `file-name`**: The name of the file to be written.
+* **[optional] `to-lower-case`**: If you need keys in the output as lowercase (e.g. an untypical config file instead of .env files are written)
 * **Other variables**: you must specify any other variable you want written to the JSON as input variables. Pass the variable with the name you want to appear in the JSON.
 
 ## Output
@@ -25,7 +26,7 @@ with:
 #### This will generate the following JSON:
 
 ``` json
-{"super-secret":"[your-super-secret]","CONNECTION_STRING":"[your-connection-string]"}
+{"SUPER-SECRET":"[your-super-secret]","CONNECTION_STRING":"[your-connection-string]"}
 ```
 
 You can later pass it's path as an input for another program (e.g. [`claudia.js`](https://claudiajs.com/), which receives a JSON in `--set-env-from-json`)

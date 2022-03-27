@@ -6,11 +6,14 @@ const inputPrefix = "INPUT_"; // This is the prefix used by GitHub Actions
 const path = require("path");
 const fullPath = path.join(process.env.GITHUB_WORKSPACE, fileName);
 
+const toLowerCase = process.env.INPUT_TO-LOWER-CASE;
+
 var obj = {};
 
 Object.keys(process.env).forEach(function(key) {
   if(key.startsWith(inputPrefix) && key != "INPUT_FILE-NAME") {
-    obj[key.substring(inputPrefix.length)] = process.env[key];
+    const keySubstring = key.substring(inputPrefix.length);
+    obj[toLowerCase ? keySubstring.toLowerCase() : keySubstring] = process.env[key];
   }
 });
   
